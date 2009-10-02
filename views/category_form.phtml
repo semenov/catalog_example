@@ -1,0 +1,31 @@
+<h1>Category</h1>
+
+
+<? if ($category->id !== 0): ?>
+    <? /* The block is displayed only if it's not a root category. */ ?>
+    
+    <? if (isset($error)): ?>
+        <div class="error" style="color:red"><?= $error ?></div>
+    <? endif ?>
+
+    <form action="/save_category" method="post">
+        Name: <br />
+        <input type="text" name="name" value="<?= $category->name ?>" /> <br />
+        <input type="hidden" name="id"  value="<?= $category->id ?>" />
+        <input type="hidden" name="parent_id"  value="<?= $category->parent_id ?>" />
+        <input type="submit" value="Save" /> 
+    </form>
+    <hr />
+<? endif ?>
+<h2>Parameters</h2>
+<? if ($category->id !== NULL): ?>
+    <? /* The block is displayed only if it's not a new category. */ ?>
+
+    <div style="margin-bottom:10px"><a href="/new_param?category_id=<?= $category->id ?>">New parameter</a></div>
+    <? foreach ($category->get_params() as $param): ?>
+        <a href="/edit_param?id=<?= $param->id ?>" title="Edit parameter"><?= $param->name ?></a> 
+        [<a href="/delete_param?id=<?= $param->id ?>" title="Delete parameter">x</a>]<br />       
+    <? endforeach ?> 
+<? else: ?>
+    To create parameters for a category you should fist save the category.
+ <? endif ?>

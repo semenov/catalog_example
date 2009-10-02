@@ -1,0 +1,12 @@
+<h1>Parameter</h1>
+<? if (isset($error)): ?>
+    <div class="error" style="color:red"><?= $error ?></div>
+<? endif ?>
+<form action="/save_param" method="post">
+    Name: <br />
+    <input type="text" name="name" value="<?= $param->name ?>" /> <br />
+    <input type="hidden" name="id"  value="<?= $param->id ?>" />
+    <input type="hidden" name="category_id"  value="<?= $param->category_id ?>" />
+    <input type="submit" value="Save" /> or
+    <a href="/edit_category?id=<?= $param->category_id ?>">Cancel</a>
+</form>

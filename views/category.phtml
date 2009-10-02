@@ -1,0 +1,38 @@
+<h1>Categories</h1>
+
+<div id="categories">
+<? if (empty($categories)): ?>
+    <em>No categories.</em>
+<? else: ?>
+    <ol>
+    <? foreach ($categories as $category): ?>
+        <li><a href="/show_category?id=<?= $category->id ?>"><?= $category->name ?></a></li>
+    <? endforeach ?>
+    </ol>
+<? endif ?>
+</div>
+
+<h1>Items</h1>
+<div id="items">
+<? if (empty($items)): ?>
+    <em>No items.</em>
+<? else: ?>
+    <ol>
+    <? foreach ($items as $item): ?>
+        <li><a href="/show_item?id=<?= $item->id ?>"><?= $item->name ?></a></li>
+    <? endforeach ?>
+    </ol>
+<? endif ?>
+</div>
+
+<? if (@$_SESSION['admin']): ?>
+<hr style="margin-top:50px"/>
+<ul>
+    <li><a href="/new_item?category_id=<?= $category_id ?>">Create item</a></li>
+    <li><a href="/new_category?parent_id=<?= $category_id ?>">Create child category</a></li>
+    <li><a href="/edit_category?id=<?= $category_id ?>">Edit current category</a></li> 
+    <? if ($category_id != 0): ?>       
+        <li><a href="/delete_category?id=<?= $category_id ?>">Delete current category</a></li>  
+    <? endif ?>
+</ul>
+<? endif ?>

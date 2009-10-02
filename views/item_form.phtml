@@ -1,0 +1,15 @@
+<h1>Item</h1>
+<? if (isset($error)): ?>
+    <div class="error" style="color:red"><?= $error ?></div>
+<? endif ?>
+<form action="/save_item" method="post">
+    Name: <br />
+    <input type="text" name="name" value="<?= $item->name ?>" /> <br />
+    <? foreach ($item->params as $param): ?>
+        <?= $param->name ?>: <br />
+        <input type="text" name="params[<?= $param->id ?>]" value="<?=  $param->value ?>" /> <br />        
+    <? endforeach ?> 
+    <input type="hidden" name="id"  value="<?= $item->id ?>" />
+    <input type="hidden" name="category_id"  value="<?= $item->category_id ?>" />
+    <input type="submit" value="Save" /> 
+</form>

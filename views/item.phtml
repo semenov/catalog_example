@@ -1,0 +1,15 @@
+<div id="item">
+<h1><?= $item->name ?></h1>
+<? foreach ($item->params as $param): ?>
+    <?= $param->name.': '.$param->value ?><br />
+<? endforeach ?>
+
+</div>
+
+<? if (@$_SESSION['admin']): ?>
+<hr style="margin-top:50px"/>
+<ul>
+    <li><a href="/edit_item?id=<?= $item->id ?>">Edit item</a></li>
+    <li><a href="/delete_item?id=<?= $item->id ?>">Delete item</a></li>       
+</ul>
+<? endif ?>
